@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principale</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Stili generali -->
+    <link rel="stylesheet" href="{% static 'css/menu_princ.css' %}"> <!-- Stili specifici -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <img src="{% static 'img/logo_du.png' %}" alt="Logo del sito">
+    </header>
+    <h1>Menu Principale</h1>
+    <div class="menu">
+        <a href="{% url 'visualizza_giocatori' %}">Visualizza Giocatori</a>
+        <a href="{% url 'crea_giocatore' %}">Crea Giocatore</a>
+        <a href="{% url 'organizza_partita' %}">Organizza Partita</a>
+    </div>
+</body>
+</html>

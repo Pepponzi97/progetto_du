@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squadre</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/squad.css' %}">
+    
+</head>
+<body>
+    <header>
+        <a href="{% url 'menu_principale' %}">
+            <img src="{% static 'img/logo_du.png' %}" alt="Logo del sito">
+        </a>
+    </header>
+    <h1>Squadre</h1>
+
+    <div class="squadre-container">
+        <div class="squadra squadra1">
+            <h2>Squadra 1 (Overall Medio: <span id="overall_medio_squadra1">{{ overall_medio_squadra_1 }}</span>)</h2>
+            <ul>
+                {% if squadra_1 %}
+                    {% for giocatore in squadra_1 %}
+                        <li class="player" id="giocatore_{{ giocatore.id }}" onclick="selezionaGiocatore('{{ giocatore.id }}')">
+                            <img src="{% static 'img/divisa_squadra1.png' %}" alt="Divisa Squadra 1" width="80" height="80">
+                            <div class="overall">{{ giocatore.overall }}</div>
+                            <div>{{ giocatore.cognome }}</div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Nessun giocatore nella squadra 1</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="tasti-container">
+            <div class="tasto-rigenera">
+                <form method="post" action="{% url 'rigenera_squadre' %}">
+                    {% csrf_token %}
+                    {% for giocatore in squadra_1 %}
+                        <input type="hidden" name="squadra_1" value="{{ giocatore.id }}">
+                    {% endfor %}
+                    {% for giocatore in squadra_2 %}
+                        <input type="hidden" name="squadra_2" value="{{ giocatore.id }}">
+                    {% endfor %}
+                    <button type="submit">Rigenera squadre</button>
+                </form>
+            </div>
+            <div class="tasto-scambia">
+                <button id="pulsanteScambia" class="custom-disabled-btn" type="button" onclick="scambiaGiocatori()" disabled>Scambia</button>
+            </div>
+            <div class="tasto-ordina">
+                <button id="pulsanteOrdina" type="button" onclick="ordinaGiocatori()">Ordina</button>
+            </div>
+        </div>
+        
+        
+        <div class="squadra squadra2">
+            <h2>Squadra 2 (Overall Medio: <span id="overall_medio_squadra2">{{ overall_medio_squadra_2 }}</span>)</h2>
+            <ul>
+                {% if squadra_2 %}
+                    {% for giocatore in squadra_2 %}
+                        <li class="player" id="giocatore_{{ giocatore.id }}" onclick="selezionaGiocatore('{{ giocatore.id }}')">
+                            <img src="{% static 'img/divisa_squadra2.png' %}" alt="Divisa Squadra 2" width="80" height="80">
+                            <div class="overall">{{ giocatore.overall }}</div>
+                            <div>{{ giocatore.cognome }}</div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Nessun giocatore nella squadra 2</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function selezionaGiocatore(idGiocatore) {
+            const giocatore = document.getElementById("giocatore_" + idGiocatore);
+            giocatore.classList.toggle("selezionato");
+
+            // Controllo se ci sono giocatori selezionati da entrambe le squadre
+            const squadra1 = document.querySelectorAll('.squadra1 .selezionato').length > 0;
+            const squadra2 = document.querySelectorAll('.squadra2 .selezionato').length > 0;
+
+            // Abilita il pulsante "Scambia" solo se sono selezionati giocatori da entrambe le squadre
+            const pulsanteScambia = document.getElementById("pulsanteScambia");
+            pulsanteScambia.disabled = !(squadra1 && squadra2);
+        }
+
+
+        // Funzione per scambiare i giocatori selezionati tra le squadre
+        function scambiaGiocatori() {
+            // Ottieni i giocatori selezionati da entrambe le squadre
+            const giocatoreSquadra1 = document.querySelector('.squadra1 .selezionato');
+            const giocatoreSquadra2 = document.querySelector('.squadra2 .selezionato');
+
+            if (!giocatoreSquadra1 || !giocatoreSquadra2) return;
+
+            // Scambia i giocatori nel DOM
+            const squadra1 = giocatoreSquadra1.parentNode;
+            const squadra2 = giocatoreSquadra2.parentNode;
+
+            squadra1.appendChild(giocatoreSquadra2);
+            squadra2.appendChild(giocatoreSquadra1);
+
+            // Ripristina le divise
+            giocatoreSquadra1.querySelector('img').src = "{% static 'img/divisa_squadra2.png' %}";
+            giocatoreSquadra2.querySelector('img').src = "{% static 'img/divisa_squadra1.png' %}";
+
+            // Rimuovi la classe "selezionato" dai giocatori
+            giocatoreSquadra1.classList.remove('selezionato');
+            giocatoreSquadra2.classList.remove('selezionato');
+
+            // Aggiorna l'overall medio per entrambe le squadre
+            aggiornaOverallMedio('squadra1');
+            aggiornaOverallMedio('squadra2');
+
+            // Disabilita il pulsante "Scambia" dopo lo scambio
+            document.getElementById('pulsanteScambia').disabled = true;
+        }
+
+        // Funzione per aggiornare l'overall medio di una squadra
+        function aggiornaOverallMedio(nomeSquadra) {
+            const squadra = document.querySelectorAll('.' + nomeSquadra + ' .player');
+            let sommaOverall = 0;
+            let numGiocatori = squadra.length;
+
+            squadra.forEach(function(giocatore) {
+                sommaOverall += parseInt(giocatore.querySelector('.overall').textContent);
+            });
+
+            let overallMedio = numGiocatori > 0 ? sommaOverall / numGiocatori : 0;
+            document.getElementById('overall_medio_' + nomeSquadra).textContent = overallMedio.toFixed(2);
+        }
+
+        function ordinaGiocatori() {
+            // Ottieni la lista dei giocatori per entrambe le squadre
+            const squadra1 = Array.from(document.querySelectorAll('.squadra1 .player'));
+            const squadra2 = Array.from(document.querySelectorAll('.squadra2 .player'));
+
+            // Ordina i giocatori per overall in modo decrescente
+            squadra1.sort((a, b) => parseInt(b.querySelector('.overall').textContent) - parseInt(a.querySelector('.overall').textContent));
+            squadra2.sort((a, b) => parseInt(b.querySelector('.overall').textContent) - parseInt(a.querySelector('.overall').textContent));
+
+            // Aggiorna l'HTML con i giocatori ordinati
+            const squadra1Container = document.querySelector('.squadra1 ul');
+            const squadra2Container = document.querySelector('.squadra2 ul');
+
+            squadra1Container.innerHTML = '';
+            squadra2Container.innerHTML = '';
+
+            squadra1.forEach(giocatore => squadra1Container.appendChild(giocatore));
+            squadra2.forEach(giocatore => squadra2Container.appendChild(giocatore));
+        }
+
+
+
+    </script>
+</body>
+</html>

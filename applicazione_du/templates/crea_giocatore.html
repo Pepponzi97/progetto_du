@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Giocatore</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/crea_gioc.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header>
+        <a href="{% url 'menu_principale' %}">
+            <img src="{% static 'img/logo_du.png' %}" alt="Logo del sito">
+        </a>
+    </header>
+
+    <h1>Crea un nuovo Giocatore</h1>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group">{{ form.nome.label_tag }} {{ form.nome }}</div>
+                <div class="form-group">{{ form.cognome.label_tag }} {{ form.cognome }}</div>
+            </div>
+            <div class="row">
+                <div class="form-group">{{ form.velocita.label_tag }} {{ form.velocita }}</div>
+                <div class="form-group">{{ form.tiro.label_tag }} {{ form.tiro }}</div>
+                <div class="form-group">{{ form.passaggio.label_tag }} {{ form.passaggio }}</div>
+            </div>
+            <div class="row">
+                <div class="form-group">{{ form.dribbling.label_tag }} {{ form.dribbling }}</div>
+                <div class="form-group">{{ form.difesa.label_tag }} {{ form.difesa }}</div>
+                <div class="form-group">{{ form.fisico.label_tag }} {{ form.fisico }}</div>
+            </div>
+            <div class="row row-ruolo">
+                <div class="form-group">{{ form.ruolo.label_tag }} {{ form.ruolo }}</div>
+            </div>
+            
+            <button type="submit">Salva Giocatore</button>
+        </form>
+    </div>
+    
+</body>
+</html>

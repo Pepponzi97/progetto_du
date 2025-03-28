@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizza Giocatori</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vis_gioc.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <a href="{% url 'menu_principale' %}">
+            <img src="{% static 'img/logo_du.png' %}" alt="Logo del sito">
+        </a>
+    </header>
+
+    <h1 class="title">Elenco dei Giocatori</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="cognome">Cognome</th>
+                    <th class="nome">Nome</th>
+                    <th class="ruolo">Ruolo</th>
+                    <th class="overall">Overall</th>
+                    <th class="azioni">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for giocatore in giocatori %}
+                    <tr>
+                        <td class="cognome">{{ giocatore.cognome }}</td>
+                        <td class="nome">{{ giocatore.nome }}</td>
+                        <td class="ruolo">{{ giocatore.ruolo }}</td>
+                        <td class="overall">{{ giocatore.overall }}</td>
+                        <td class="azioni">
+                            <div class="action-buttons">
+                                <form method="get" action="{% url 'modifica_giocatore' giocatore.id %}">
+                                    <button type="submit">Modifica</button>
+                                </form>
+                                <form method="post" action="{% url 'elimina_giocatore' giocatore.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete">Elimina</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

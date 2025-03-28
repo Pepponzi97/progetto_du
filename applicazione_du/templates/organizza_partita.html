@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizza Partita</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/org_par.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="{% static 'js/org_par.js' %}"></script>
+</head>
+<body>
+    <header>
+        <a href="{% url 'menu_principale' %}">
+            <img src="{% static 'img/logo_du.png' %}" alt="Logo del sito">
+        </a>
+    </header>
+    <h1>Organizza Partita</h1>
+
+    <form method="post" action="{% url 'organizza_partita' %}">
+        {% csrf_token %}
+        <label for="num_giocatori">Seleziona il numero di giocatori:</label>
+        <select name="num_giocatori" id="num_giocatori">
+            <option value="10">5 vs 5 (10 giocatori)</option>
+            <option value="12">6 vs 6 (12 giocatori)</option>
+            <option value="14">7 vs 7 (14 giocatori)</option>
+            <option value="16">8 vs 8 (16 giocatori)</option>
+            <option value="18">9 vs 9 (18 giocatori)</option>
+            <option value="20">10 vs 10 (20 giocatori)</option>
+            <option value="22">11 vs 11 (22 giocatori)</option>
+            <!-- Aggiungi altre opzioni per il numero di giocatori -->
+        </select>
+    
+        <!-- Barra di ricerca -->
+        <input type="text" id="searchBar" onkeyup="filterPlayers()" placeholder="Cerca giocatore...">
+
+        <button type="submit">Continua</button>
+        
+        <!-- Contenitore per i riquadri dei giocatori -->
+            <div class="giocatori-container">
+                {% for giocatore in giocatori %}
+                    <div class="giocatore" onclick="toggleSelection(event)" data-overall="{{ giocatore.overall }}">
+                        <p class="player-name">{{ giocatore.cognome }} {{ giocatore.nome }}</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <span class="overall-value">{{ giocatore.overall }}</span>
+                            </div>
+                        </div>
+                        <input type="checkbox" name="giocatori_selezionati" value="{{ giocatore.id }}" style="display:none;">
+                    </div>
+                {% endfor %}
+            </div>
+        <!-- Finestra laterale per i giocatori selezionati -->
+            <div class="selected-players-container" id="selectedPlayersContainer">
+                <h2>Convocati</h2>
+                <table id="selectedPlayersList">
+                <!-- I giocatori selezionati verranno aggiunti qui -->
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

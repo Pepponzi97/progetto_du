@@ -1,0 +1,115 @@
+/*visualizza_giocatori.css */
+
+header {
+            text-align: center; /* Per centrare l'immagine orizzontalmente */
+            padding-top: 20px; /* Aggiungi spazio sopra l'immagine */
+        }
+        
+        /* Stili per il logo */
+        header img {
+            width: 150px; /* Imposta la larghezza desiderata */
+            height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
+        }
+        
+        /* Stili per la tabella che emula i riquadri */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%; /* Riduci la larghezza della tabella qui */
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            color: #202122; /* Cambia questo colore per le intestazioni */
+        }
+
+        /* Stile per i pulsanti */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center; /* Centra i pulsanti orizzontalmente */
+            align-items: center; /* Centra i pulsanti verticalmente */
+        }
+
+        .action-buttons form {
+            margin: 0;
+        }
+
+        .action-buttons button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #00a100;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons button:hover {
+            background-color: #006100;
+        }
+
+        .action-buttons button.delete {
+            background-color: #dc3545;
+        }
+
+        .action-buttons button.delete:hover {
+            background-color: #c82333;
+        }
+
+        .giocatore-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Regola la larghezza delle colonne */
+        th.nome, td.nome {
+            width: 25%;
+        }
+
+        th.cognome, td.cognome {
+            width: 25%;
+        }
+
+        th.ruolo, td.ruolo {
+            width: 10%;
+        }
+
+        th.overall, td.overall {
+            width: 10%;
+        }
+
+        th.azioni, td.azioni {
+            width: 30%;
+        }
+
+        /* Cambia il colore dell'intestazione e delle linee della colonna Azioni */
+        th.azioni {
+            background-color: #00000000; /* Cambia questo colore per l'intestazione della colonna Azioni */
+            border: 1px solid #00000000; /* Cambia questo colore per il bordo dell'intestazione */
+        }
+
+        td.azioni {
+            border: 1px solid #00000000; /* Cambia questo colore per il bordo delle celle della colonna Azioni */
+        }
+
+        /* Centra il titolo */
+        .title {
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Applica il font Poppins */
+        }
