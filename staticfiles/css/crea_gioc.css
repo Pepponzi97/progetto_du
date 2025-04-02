@@ -1,0 +1,133 @@
+/* Crea Giocatore */
+
+body {
+    font-family: 'Poppins', sans-serif; /* Applica il font Poppins */
+}
+
+
+header {
+    text-align: center; /* Per centrare l'immagine orizzontalmente */
+    padding-top: 20px; /* Aggiungi spazio sopra l'immagine */
+}
+
+/* Stili per il logo */
+header img {
+    width: 150px; /* Imposta la larghezza desiderata */
+    height: auto; /* Mantiene le proporzioni */
+}
+
+h1 {
+    text-align: center;  /* Centra il testo */
+    margin-top: 20px;    /* Aggiungi un po' di spazio sopra */
+}
+
+/* Container principale con stile trasparente e bordi arrotondati */
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Trasparente con sfondo bianco */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Righe per sistemare gli input in orizzontale */
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Gruppo di input con larghezza fissa per ciascuno */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+}
+
+/* Ultima riga (per il ruolo) a larghezza intera */
+.row:last-child .form-group {
+    width: 100%;
+}
+
+/* Stile per il pulsante */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #4CAF50; /* Grigio scuro come prima */
+    border: none;
+    border-radius: 5px;
+    color: #fff; /* Colore bianco per il testo */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover del pulsante per effetto */
+button:hover {
+    background-color: #45a049; /* Sfumatura più scura al passaggio del mouse */
+}
+
+/* Modifiche per i campi di input (trasparenza come prima) */
+input, select, textarea {
+    background-color: rgba(255, 255, 255, 0.2); /* Sfondo trasparente per gli input */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordo chiaro */
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #4CAF50; /* Colore verde del bordo */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6), 0 0 15px rgba(76, 175, 80, 0.4); /* Contorno luminoso verde */
+    background-color: rgba(255, 255, 255, 0.2); /* Sfondo trasparente */
+}
+
+.row-ruolo {
+    display: flex;
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+}
+
+.row-ruolo .form-group {
+    width: 32%; /* Mantiene la stessa dimensione delle altre colonne */
+    text-align: center;
+}
+
+/* Centrare il testo dentro gli input e il select */
+input, select, textarea {
+    text-align: center;
+}
+
+/* Stile moderno per il menu a tendina */
+select {
+    appearance: none; /* Rimuove lo stile di default del browser */
+    background-color: rgba(255, 255, 255, 0.2); /* Sfondo trasparente */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordo chiaro */
+    color: white; /* Testo bianco */
+    padding: 10px;
+    border-radius: 5px; /* Bordi arrotondati */
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center; /* Testo centrato */
+    transition: all 0.3s ease;
+}
+
+
+/* Stile quando è aperto */
+select:focus {
+    outline: none;
+    border-color: #4CAF50; /* Bordo verde al focus */
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6), 0 0 15px rgba(76, 175, 80, 0.4); /* Effetto luminoso */
+}
+
+/* Stile delle opzioni all'interno */
+select option {
+    background: #222; /* Sfondo scuro */
+    color: white; /* Testo bianco */
+    padding: 10px;
+    border-radius: 5px;
+}

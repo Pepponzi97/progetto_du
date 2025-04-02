@@ -74,16 +74,28 @@ WSGI_APPLICATION = 'progetto_du.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import os
+from psycopg2 import connect
+
+import dj_database_url
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'database_du',  # Il nome del database che hai creato in PostgreSQL
-        'USER': 'pepponzi',     # L'utente che hai creato in PostgreSQL
-        'PASSWORD': 'Sorrentino97',  # La password dell'utente PostgreSQL
-        'HOST': 'localhost',    # Usando il database in locale
-        'PORT': '5432',         # La porta di default di PostgreSQL
+        'NAME': 'postgres',
+        'USER': 'postgres.ejxdwtvibwxiovwmbunc',  # User aggiornato
+        'PASSWORD': 'Giuseppesorrentino_1997',  # La tua password
+        'HOST': 'aws-0-eu-west-2.pooler.supabase.com',  # Nuovo host del pooler
+        'PORT': '6543',  # Nuovo porto
     }
 }
+
+
+
+
+
+
+
 
 
 

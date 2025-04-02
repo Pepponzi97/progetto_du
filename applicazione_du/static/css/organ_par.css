@@ -1,0 +1,223 @@
+/* Organizza Partita */
+header {
+    text-align: center; /* Per centrare l'immagine orizzontalmente */
+    padding-top: 20px; /* Aggiungi spazio sopra l'immagine */
+}
+
+/* Stili per il logo */
+header img {
+    width: 150px; /* Imposta la larghezza desiderata */
+    height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
+}
+
+h1, form {
+    font-family: 'Poppins', sans-serif;  /* Cambia il font solo per il titolo */
+    text-align: center;
+}
+
+label, select, button {
+    margin: 10px;
+}
+
+/* Stili per il contenitore della selezione */
+select {
+    background-color: #00000000; /* Sfondo nero */
+    color: white; /* Testo bianco */
+    border: 1px solid #ccc; /* Bordo grigio */
+    padding: 8px; /* Spazio interno */
+    font-size: 14px; /* Dimensione del testo */
+    border-radius: 5px; /* Angoli arrotondati */
+    -webkit-appearance: none; /* Rimuovi lo stile predefinito nei browser WebKit */
+    -moz-appearance: none; /* Rimuovi lo stile predefinito in Firefox */
+    appearance: none; /* Rimuovi lo stile predefinito nei browser moderni */
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
+}
+
+/* Stili per le opzioni */
+option {
+    background-color: #202122; /* Sfondo nero */
+    color: white; /* Testo bianco */
+}
+
+/* Stili per il pulsante */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Stili per i riquadri dei giocatori */
+.giocatori-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.giocatore {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 8px 15px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px; /* Spazio tra i riquadri */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.giocatore:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.giocatore.selected {
+    border: 2px solid #ffffff;
+    background-color: #ffffff20;
+}
+
+.progress-bar-container {
+    background-color: #f3f3f3;
+    border-radius: 13px;
+    padding: 3px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    background-color: #4CAF50;
+    width: 0;
+    height: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.overall-value {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    color: white; /* Colore del testo */
+    font-size: 12px; /* Dimensione del testo */
+    line-height: 20px; /* Altezza della barra di progresso */
+    position: absolute;
+    left: 5px; /* Aggiungi un po' di spazio a sinistra */
+}
+
+.player-name {
+    font-family: "Arial Rounded MT Bold", sans-serif;
+    font-size: 16px; /* Dimensione del testo */
+    font-weight: bold; /* Testo in grassetto */
+    color: #d3d3d3; /* Colore del testo */
+}
+
+.progress-bar.low {
+    background-color: #FF6347; /* Rosso */
+}
+
+.progress-bar.midlow {
+    background-color: #fcc736; /* Giallo */
+}
+
+.progress-bar.mid {
+    background-color: #c1e044; /* Verdino */
+}
+
+.progress-bar.midhigh {
+    background-color: #71cc31; /* Verde */
+}
+
+.progress-bar.high {
+    background-color: #348e2b; /* Verde Scuro */
+}
+
+#searchBar {
+    background-color: #15ff0000 !important;
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 30%;
+    font-size: 16px;
+    color: #d3d3d3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Aggiungi questa regola CSS per nascondere i giocatori non corrispondenti */
+.hidden {
+    display: none;
+}
+
+/* Stili per la finestra laterale dei giocatori selezionati */
+.selected-players-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    text-align: left;
+    background-color: #f9f9f900;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: fixed; /* Posiziona la finestra lateralmente */
+    right: 20px; /* Distanza dal lato destro della pagina */
+    top: 100px; /* Distanza dall'alto della pagina */
+    max-height: 80vh; /* Altezza massima */
+    overflow-y: auto; /* Aggiungi scroll se necessario */
+}
+
+.selected-players-container table {
+    width: 100%;
+}
+
+.selected-players-container td {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.player-number {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    margin-left: 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Stili per i nomi dei giocatori selezionati */
+.selected-players-container {
+    font-size: 14px; /* Imposta la dimensione del testo */
+    font-weight: bold; /* Rendi il testo grasso */
+    font-family: "Poppins", sans-serif; /* Cambia il font */
+    line-height: 22px;
+}
+
+
+.remove-button {
+    cursor: pointer;
+    color: rgb(193, 27, 27);
+    text-align: right;
+    display: inline-block;
+    font-weight: bold; /* Rendi il testo grasso */
+    font-family: "Arial Rounded MT Bold", sans-serif; /* Cambia il font */
+    font-size: 16px; /* Dimensione del font */
+    width: 20px;
+    margin-right: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 20px;
+    font-family: Tahoma, sans-serif; /* Cambia il font */
+}

@@ -1,0 +1,110 @@
+/* Imposta il colore di sfondo per tutte le pagine */
+body {
+    background-color: #202122;  /* Sostituisci #f0f0f0 con il colore desiderato */
+    color: #fff; /* Colore del testo bianco */
+}
+
+
+.squadre-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.squadra {
+    flex: 1;
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.squadra h2 {
+    text-align: center;
+}
+
+.squadra ul {
+    list-style: none;
+    padding: 0;
+}
+
+.squadra li {
+    padding: 5px 0;
+}
+
+/* Stile per il pulsante Rigenera Squadre */
+.tasto-rigenera button {
+    padding: 10px 20px;
+    background-color: #006100; /* Colore di sfondo */
+    color: #fff; /* Colore del testo */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Visualizza come blocco */
+    margin: 20px auto; /* Margine automatico per centrare orizzontalmente */
+}
+
+.tasto-rigenera {
+    margin-top: 20px; /* Spazio sopra il contenitore del pulsante */
+    text-align: center; /* Per centrare il pulsante orizzontalmente */
+}
+
+.selezionato {
+    border: 2px solid #00ac00;
+    background-color: #0070003e;
+}
+
+#pulsanteScambia[disabled] {
+    /* Stili quando il pulsante è disabilitato */
+    background-color: #dddddd;
+    color: #777777;
+    cursor: not-allowed;
+}
+
+.tasto-scambia {
+    /* Aggiungi stili per il posizionamento del contenitore del pulsante Scambia */
+    margin-top: 20px; /* Regola il margine superiore per separare dal pulsante precedente */
+    text-align: center; /* Per centrare il pulsante orizzontalmente */
+    /* Rimuovi margin-left per evitare che il pulsante sia posizionato a sinistra */
+}
+
+/* Stili per il pulsante Scambia */
+#pulsanteScambia {
+    padding: 10px 20px;
+    background-color: #00bb00; /* Colore di sfondo */
+    color: #fff; /* Colore del testo */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Visualizza come blocco */
+    margin: 20px auto; /* Margine automatico per centrare orizzontalmente */
+}
+
+.tasti-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra i contenuti orizzontalmente */
+    gap: 20px; /* Spazio tra i pulsanti */
+    margin: 0 20px; /* Aggiunge margini ai lati della colonna centrale */
+}
+
+/* Stili per il pulsante Ordina */
+#pulsanteOrdina {
+    padding: 10px 20px;
+    background-color: #006100; /* Colore di sfondo */
+    color: #fff; /* Colore del testo */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Visualizza come blocco */
+    margin: 20px auto; /* Margine automatico per centrare orizzontalmente */
+}
+
+.tasto-ordina {
+    margin-top: 20px; /* Regola il margine superiore per separare il tasto dagli altri elementi */
+    text-align: center; /* Per centrare il tasto orizzontalmente */
+}
